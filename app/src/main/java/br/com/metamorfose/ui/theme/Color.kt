@@ -34,6 +34,9 @@ val BlackNormal = Color(0xFF212121)
 val BlackLight = Color(0xFF424242)
 val BlackLighten = Color(0xFF9B9B9B)
 
+// Shadow
+val DefaultButtonShadow = Color(0xFFE5E5E5)
+
 // Linear Gradients
 
 val LightPurpleGradient = Brush.linearGradient(

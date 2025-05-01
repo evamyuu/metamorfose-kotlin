@@ -20,7 +20,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.metamorfose.ui.screen.PlantSetupScreen
+import br.com.metamorfose.ui.screens.plantsetup.PlantSetupScreen
 
 /**
  * Objeto com as rotas utilizadas na navegação do app
@@ -48,7 +48,7 @@ fun AppNavigation(
         // Tela de configuração inicial da planta
         composable(route = AppRoutes.PLANT_SETUP) {
             PlantSetupScreen(
-                navController = navController
+
             )
         }
     }

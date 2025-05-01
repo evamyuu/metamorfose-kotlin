@@ -16,7 +16,7 @@ val GreenNormal = Color(0xFF58C45D)
 val GreenLight = Color(0xFF6EF575)
 
 // White
-val WhiteDark = Color(0xFFEDEDED)
+val WhiteDark = Color(0xFFE5E5E5)
 val WhiteLight = Color(0xFFFFFFFF)
 val WhiteNormal = Color(0xFFF7F7F7)
 
@@ -38,7 +38,6 @@ val BlackLighten = Color(0xFF9B9B9B)
 val DefaultButtonShadow = Color(0xFFE5E5E5)
 
 // Linear Gradients
-
 val LightPurpleGradient = Brush.linearGradient(
     colors = listOf(
         Color(0xFFFAEAFF),  // 0%

@@ -15,34 +15,83 @@ val DinNext = FontFamily(
 
 val Typography = Typography(
 
-    bodyMedium = TextStyle(
-        fontFamily = DinNext,
-        fontSize = 10.5.sp,  // Equivalent to 14px
-        fontWeight = FontWeight.Normal
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = DinNext,
-        fontSize = 12.sp,  // Equivalent to 16px
-        fontWeight = FontWeight.Normal
-    ),
-    titleMedium = TextStyle(
-        fontFamily = DinNext,
-        fontSize = 15.sp,  // Equivalent to 20px
-        fontWeight = FontWeight.Normal
-    ),
     displayLarge = TextStyle(
         fontFamily = DinNext,
-        fontSize = 27.sp,  // Equivalent to 36px
-        fontWeight = FontWeight.Normal
+        fontWeight = FontWeight.Normal,
+        fontSize = 36.sp
+    ),
+    displayMedium = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Normal,
+        fontSize = 28.sp
     ),
     displaySmall = TextStyle(
         fontFamily = DinNext,
-        fontSize = 12.sp, // Equivalent to 16px (Bold)
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp
     ),
+
     headlineLarge = TextStyle(
         fontFamily = DinNext,
-        fontSize = 27.sp, // Equivalent to 36px (Bold)
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
+        fontSize = 36.sp
+    ),
+    headlineMedium = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp
+    ),
+    headlineSmall = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 24.sp
+    ),
+
+    titleLarge = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp
+    ),
+    titleMedium = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp
+    ),
+    titleSmall = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp
+    ),
+
+    bodyLarge = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp
+    ),
+    bodySmall = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    ),
+
+    labelLarge = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 14.sp
+    ),
+    labelMedium = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 12.sp
+    ),
+    labelSmall = TextStyle(
+        fontFamily = DinNext,
+        fontWeight = FontWeight.Bold,
+        fontSize = 10.sp
     )
 )

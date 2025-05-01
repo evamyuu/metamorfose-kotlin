@@ -27,6 +27,11 @@ import br.com.metamorfose.ui.theme.PurpleDarken
 import br.com.metamorfose.ui.theme.PurpleNormal
 import br.com.metamorfose.ui.theme.Typography
 import br.com.metamorfose.ui.theme.WhiteLight
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 
 /**
  * Componente de botão primário (usado para ações principais na interface do usuário),
@@ -71,38 +76,49 @@ fun PrimaryButton(
     fontSize: TextUnit = 16.sp,
     modifier: Modifier = Modifier
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
     Box(
         modifier = modifier
             .drawBehind {
-                val shadowOffsetY = 4.dp.toPx()
-                drawIntoCanvas { canvas ->
-                    withTransform({
-                        translate(top = shadowOffsetY)
-                    }) {
-                        drawRoundRect(
-                            color = shadowColor,
-                            cornerRadius = CornerRadius(12.dp.toPx(), 12.dp.toPx()),
-                            size = size
-                        )
+                if (!isPressed) {
+                    val shadowOffsetY = 4.dp.toPx()
+                    drawIntoCanvas { canvas ->
+                        withTransform({
+                            translate(top = shadowOffsetY)
+                        }) {
+                            drawRoundRect(
+                                color = shadowColor,
+                                cornerRadius = CornerRadius(12.dp.toPx(), 12.dp.toPx()),
+                                size = size
+                            )
+                        }
                     }
                 }
             }
             .fillMaxWidth()
-            .height(43.dp)
+            .height(height)
             .background(
                 color = backgroundColor,
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(cornerRadius)
             )
             .border(
                 BorderStroke(1.dp, strokeColor),
-                shape = RoundedCornerShape(12.dp)
+                shape = RoundedCornerShape(cornerRadius)
+            )
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                onClick = onClick
             ),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,
             color = textColor,
-            style = Typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
+            style = Typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+            fontSize = fontSize
         )
     }
 }
@@ -112,7 +128,7 @@ fun PrimaryButton(
  */
 @Preview(showBackground = true)
 @Composable
-fun IgnorarEtapaButtonPreview() {
+fun PrimaryButtonPreview() {
     MetamorfoseTheme {
         PrimaryButton(
             text = "IGNORAR ESSA ETAPA POR ENQUANTO",

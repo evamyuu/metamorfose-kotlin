@@ -1,3 +1,20 @@
+/**
+ * File: PrimaryButton.kt
+ * Description: Componente de botão primário do app Metamorfose. Usado para ações principais como "Entrar", "Cadastrar", "Confirmar", etc.
+ *
+ * Responsabilidades:
+ * - Exibe um botão primário customizado com suporte para sombra, borda, e interação de clique.
+ * - Permite personalização de cor de fundo, borda, texto e sombra.
+ * - Suporta animações de clique e transições visuais.
+ *
+ * Author: Evelin Cordeiro
+ * Created on: 28-04-2025
+ * Last modified: 30-04-2025
+ * Version: 1.0.0
+ * Squad: Metamorfose
+ *
+ */
+
 package br.com.metamorfose.ui.components.buttons
 
 import androidx.compose.foundation.BorderStroke

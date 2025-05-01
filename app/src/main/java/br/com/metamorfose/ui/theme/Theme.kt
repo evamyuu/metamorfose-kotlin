@@ -1,3 +1,20 @@
+/**
+ * File: Theme.kt
+ * Description: Definição do tema do app Metamorfose, incluindo as cores para os modos claro e escuro, e a aplicação do tema em toda a interface do usuário.
+ *
+ * Responsabilidades:
+ * - Define o esquema de cores para o tema claro e escuro.
+ * - Aplica o tema ao conteúdo do app, alterando a cor da barra de status e ajustando o esquema de cores conforme o modo (claro ou escuro).
+ * - Utiliza a API do Jetpack Compose para adaptar a UI ao tema configurado.
+ *
+ * Author: Evelin Cordeiro
+ * Created on: 28-04-2025
+ * Last modified: 30-04-2025
+ * Version: 1.0.0
+ * Squad: Metamorfose
+ *
+ */
+
 package br.com.metamorfose.ui.theme
 
 import android.app.Activity

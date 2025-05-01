@@ -1,3 +1,20 @@
+/**
+ * File: Typography.kt
+ * Description: Definição da tipografia do app Metamorfose, incluindo os estilos de texto e a família de fontes utilizada no app.
+ *
+ * Responsabilidades:
+ * - Configura os estilos de texto para diferentes elementos da interface do usuário (como títulos, corpo, e labels).
+ * - Utiliza a fonte "DIN Next" para todos os estilos de texto.
+ * - Define tamanhos de texto específicos para exibição, títulos, corpo e labels.
+ *
+ * Author: Evelin Cordeiro
+ * Created on: 28-04-2025
+ * Last modified: 30-04-2025
+ * Version: 1.0.0
+ * Squad: Metamorfose
+ *
+ */
+
 package br.com.metamorfose.ui.theme
 
 import androidx.compose.material3.Typography

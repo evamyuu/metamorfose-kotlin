@@ -1,3 +1,20 @@
+/**
+ * File: Color.kt
+ * Description: Definições de cores e gradientes do tema do app Metamorfose. Contém cores personalizadas para o design do app e gradientes lineares usados em diversos elementos.
+ *
+ * Responsabilidades:
+ * - Define as cores principais do app (roxo, verde, branco, cinza, preto) com variações de tons.
+ * - Inclui gradientes lineares utilizados em diversos componentes visuais do app.
+ * - Facilita a personalização do tema, mantendo consistência visual.
+ *
+ * Author: Evelin Cordeiro
+ * Created on: 28-04-2025
+ * Last modified: 30-04-2025
+ * Version: 1.0.0
+ * Squad: Metamorfose
+ *
+ */
+
 package br.com.metamorfose.ui.theme
 
 import androidx.compose.ui.graphics.Brush

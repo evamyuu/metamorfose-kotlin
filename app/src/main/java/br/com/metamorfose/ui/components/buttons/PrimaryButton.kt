@@ -47,6 +47,7 @@ import br.com.metamorfose.ui.theme.WhiteLight
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 
@@ -114,7 +115,7 @@ fun PrimaryButton(
                     }
                 }
             }
-            .fillMaxWidth()
+            .width(width)
             .height(height)
             .background(
                 color = backgroundColor,
@@ -153,7 +154,8 @@ fun PrimaryButtonPreview() {
             backgroundColor = PurpleNormal,
             textColor = WhiteLight,
             strokeColor = PurpleNormal,
-            shadowColor = PurpleDarken
+            shadowColor = PurpleDarken,
+            width = 334.dp
         )
     }
 }

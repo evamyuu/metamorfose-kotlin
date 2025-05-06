@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Metamorfoseapp" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Tema específico para inicialização que desativa a splash screen automática -->
+    <style name="Theme.Metamorfoseapp.Starting" parent="Theme.Metamorfoseapp">
+        <item name="android:windowSplashScreenBehavior">icon_preferred</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+
 </resources>

@@ -1,4 +1,4 @@
-package br.com.metamorfose.ui.screens.splash
+package br.com.metamorfose.ui.screens.brandsplash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class SplashViewModel : ViewModel() {
+class BrandSplashViewModel : ViewModel() {
 
     // Indica se a animação da splash screen terminou
     private val _isLoading = MutableStateFlow(true)
@@ -17,8 +17,8 @@ class SplashViewModel : ViewModel() {
     init {
         // Inicia um coroutine que atrasa por 2 segundos e depois atualiza o estado
         viewModelScope.launch {
-            delay(2000) // 2 segundos de exibição
-            _isLoading.value = false // Este valor está sendo atualizado?
+            delay(3000) // 2 segundos de exibição
+            _isLoading.value = false // Alterando o valor para falso após o delay
         }
     }
 }

@@ -222,6 +222,7 @@ private fun LoginContent(viewModel: AuthViewModel) {
             strokeColor = PurpleNormal,
             textColor = WhiteLight,
             shadowColor = PurpleDarken,
+            width = 334.dp,
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
@@ -365,6 +366,7 @@ private fun RegisterContent(viewModel: AuthViewModel) {
             strokeColor = PurpleNormal,
             textColor = WhiteLight,
             shadowColor = PurpleDarken,
+            width = 334.dp,
             modifier = Modifier.padding(vertical = 16.dp)
         )
 

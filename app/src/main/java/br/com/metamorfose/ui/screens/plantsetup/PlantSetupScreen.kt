@@ -200,7 +200,7 @@ private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
 
         // Divisor "OU"
         Separator(
-            modifier = Modifier.padding(vertical = 8.dp),
+            modifier = Modifier.padding(vertical = 16.dp),
             text = "OU",
             dividerColor = WhiteDark,
             textColor = GreyLight

@@ -3,14 +3,13 @@
  * Description: Componente de botão primário do app Metamorfose. Usado para ações principais como "Entrar", "Cadastrar", "Confirmar", etc.
  *
  * Responsabilidades:
- * - Exibe um botão primário customizado com suporte para sombra, borda, e interação de clique.
- * - Permite personalização de cor de fundo, borda, texto e sombra.
+ * - Exibe um botão primário customizado e interação de clique.
  * - Suporta animações de clique e transições visuais.
  *
  * Author: Evelin Cordeiro
  * Created on: 28-04-2025
- * Last modified: 30-04-2025
- * Version: 1.0.0
+ * Last modified: 08-05-2025
+ * Version: 2.0.0
  * Squad: Metamorfose
  *
  */
@@ -53,30 +52,17 @@ import androidx.compose.runtime.getValue
 
 /**
  * Componente de botão primário (usado para ações principais na interface do usuário),
- * como "Entrar", "Cadastrar", "Confirmar", etc. Ele possui personalização de cor, altura, borda, sombra e estilo
- * de texto. A interação do usuário é definida pelo parâmetro `onClick`.
+ * como "Entrar", "Cadastrar", "Confirmar", etc. A interação do usuário é definida pelo parâmetro `onClick`.
  *
  * @param text O texto exibido no botão.
  * @param onClick A ação que será executada quando o botão for pressionado.
- * @param backgroundColor Cor de fundo do botão.
- * @param strokeColor Cor da borda do botão.
- * @param textColor Cor do texto exibido no botão.
- * @param shadowColor Cor da sombra do botão, usada para um efeito de profundidade.
- * @param height A altura do botão (padrão 43.dp).
- * @param width A largura do botão (padrão 334.dp, mas geralmente será ajustado automaticamente com fillMaxWidth).
- * @param cornerRadius O raio dos cantos arredondados do botão (padrão 12.dp).
- * @param fontSize O tamanho da fonte do texto do botão (padrão 16.sp).
  * @param modifier Modificador opcional para ajustes como margens e padding.
  *
  * Exemplo de uso:
  * ```kotlin
  * PrimaryButton(
  *     text = "Entrar",
- *     onClick = { /* Ação ao clicar no botão */ },
- *     backgroundColor = PurpleNormal,
- *     strokeColor = PurpleDarken,
- *     textColor = WhiteLight,
- *     shadowColor = PurpleDarken
+ *     onClick = { /* Ação ao clicar no botão */ }
  * )
  * ```
  */
@@ -84,61 +70,19 @@ import androidx.compose.runtime.getValue
 fun PrimaryButton(
     text: String,
     onClick: () -> Unit,
-    backgroundColor: Color,
-    strokeColor: Color,
-    textColor: Color,
-    shadowColor: Color,
-    height: Dp = 43.dp,
-    width: Dp = 334.dp,
-    cornerRadius: Dp = 12.dp,
-    fontSize: TextUnit = 16.sp,
     modifier: Modifier = Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-    Box(
-        modifier = modifier
-            .drawBehind {
-                if (!isPressed) {
-                    val shadowOffsetY = 4.dp.toPx()
-                    drawIntoCanvas { canvas ->
-                        withTransform({
-                            translate(top = shadowOffsetY)
-                        }) {
-                            drawRoundRect(
-                                color = shadowColor,
-                                cornerRadius = CornerRadius(12.dp.toPx(), 12.dp.toPx()),
-                                size = size
-                            )
-                        }
-                    }
-                }
-            }
-            .width(width)
-            .height(height)
-            .background(
-                color = backgroundColor,
-                shape = RoundedCornerShape(cornerRadius)
-            )
-            .border(
-                BorderStroke(1.dp, strokeColor),
-                shape = RoundedCornerShape(cornerRadius)
-            )
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = onClick
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            color = textColor,
-            style = Typography.titleSmall.copy(fontWeight = FontWeight.Bold),
-            fontSize = fontSize
-        )
-    }
+    CustomButton(
+        text,
+        onClick,
+        textColor = WhiteLight,
+        strokeColor = PurpleNormal,
+        shadowColor = PurpleDarken,
+        backgroundColor = PurpleNormal
+    )
 }
 
 /**
@@ -149,13 +93,8 @@ fun PrimaryButton(
 fun PrimaryButtonPreview() {
     MetamorfoseTheme {
         PrimaryButton(
-            text = "IGNORAR ESSA ETAPA POR ENQUANTO",
-            onClick = {}, // Defina a ação ao clicar
-            backgroundColor = PurpleNormal,
-            textColor = WhiteLight,
-            strokeColor = PurpleNormal,
-            shadowColor = PurpleDarken,
-            width = 334.dp
+            text = "BOTÃO PRIMÁRIO",
+            onClick = {} // Defina a ação ao clicar
         )
     }
 }

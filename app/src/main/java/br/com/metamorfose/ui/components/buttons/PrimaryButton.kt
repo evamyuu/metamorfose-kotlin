@@ -46,6 +46,7 @@ import br.com.metamorfose.ui.theme.WhiteLight
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 

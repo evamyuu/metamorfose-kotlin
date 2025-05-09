@@ -218,10 +218,6 @@ private fun LoginContent(viewModel: AuthViewModel) {
         PrimaryButton(
             text = "ENTRAR",
             onClick = { /* Realizar login */ },
-            backgroundColor = PurpleNormal,
-            strokeColor = PurpleNormal,
-            textColor = WhiteLight,
-            shadowColor = PurpleDarken,
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
@@ -361,10 +357,6 @@ private fun RegisterContent(viewModel: AuthViewModel) {
         PrimaryButton(
             text = "CRIAR CONTA",
             onClick = { /* Criar conta */ },
-            backgroundColor = PurpleNormal,
-            strokeColor = PurpleNormal,
-            textColor = WhiteLight,
-            shadowColor = PurpleDarken,
             modifier = Modifier.padding(vertical = 16.dp)
         )
 

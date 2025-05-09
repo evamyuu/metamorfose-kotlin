@@ -50,7 +50,6 @@ object Destinations {
     const val MASCOT_SPLASH_SCREEN = "mascot_splash"  // Tela de splash com o Ivy
     const val AUTH_SCREEN = "auth"  // Tela de autenticação do usuário.
     const val MAIN_SCREEN = "main"  // Tela principal do aplicativo, ainda não implementada.
-
 }
 
 /**

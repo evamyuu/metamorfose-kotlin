@@ -1,16 +1,15 @@
 /**
  * File: MainActivity.kt
- * Description: Atividade principal do aplicativo Metamorfose que configura a navegação e o tema.
+ * Description: Atividade principal do aplicativo Metamorfose, responsável por aplicar o tema e iniciar a navegação.
  *
  * Responsabilidades:
- * - Ponto de entrada do aplicativo
- * - Configura o tema do aplicativo
- * - Inicializa o sistema de navegação
+ * - Ponto de entrada do aplicativo.
+ * - Aplicar o tema personalizado da aplicação.
+ * - Inicializar o sistema de navegação via Jetpack Compose.
  *
- * Author: [Autor Original]
- * Modified by: [Seu Nome]
+ * Author: Vitoria Lana
  * Created on: 28-04-2025
- * Last modified: 08-05-2025
+ * Last modified: 09-05-2025
  * Version: 2.0.0
  * Squad: Metamorfose
  */
@@ -29,19 +28,15 @@ import br.com.metamorfose.ui.theme.MetamorfoseTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Aplica o tema normal assim que possível, substituindo o tema de inicialização
         setTheme(R.style.Theme_Metamorfoseapp)
 
         super.onCreate(savedInstanceState)
         setContent {
             MetamorfoseTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Inicializa o sistema de navegação com o fluxo completo:
-                    // BrandSplash -> MascotSplash -> Auth -> PlantSetup -> Main
                     AppNavigation()
                 }
             }

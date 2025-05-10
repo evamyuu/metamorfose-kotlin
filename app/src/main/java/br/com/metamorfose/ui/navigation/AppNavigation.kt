@@ -8,13 +8,17 @@
  * - Gerenciar a navegação entre todas as telas do aplicativo.
  * - Controlar a navegação utilizando o NavController.
  *
- * Author: Evelin Cordeiro
- * Modified by: [Seu Nome]
- * Created on: 30-04-2025
- * Last modified: 08-05-2025
+ * Author: Vitoria Lana
+ * Created on: 09-05-2025
+ * Last modified: 10-05-2025
  * Version: 2.0.0
  * Squad: Metamorfose
+ *
+ *  * Changelog:
+ *  * - [10-05-2025] Adicionado Onboarding. (por Evelin Cordeiro)
+ *
  */
+
 
 package br.com.metamorfose.ui.navigation
 
@@ -28,26 +32,27 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.metamorfose.ui.MainScreen
 import br.com.metamorfose.ui.screens.auth.AuthScreen
+import br.com.metamorfose.ui.screens.onboarding.OnboardingFinalScreen
 import br.com.metamorfose.ui.screens.plantsetup.PlantSetupScreen
 import br.com.metamorfose.ui.screens.splash.BrandSplashScreen
 import br.com.metamorfose.ui.screens.splash.MascotSplashScreen
 
 /**
- * Destinations object contém as constantes de navegação para as telas do aplicativo.
+ * Define os destinos de navegação disponíveis no app.
  */
 object Destinations {
-    const val BRAND_SPLASH_SCREEN = "brand_splash"  // Tela inicial com logo da marca
-    const val MASCOT_SPLASH_SCREEN = "mascot_splash"  // Tela de splash com o Ivy
-    const val AUTH_SCREEN = "auth"  // Tela de autenticação do usuário
-    const val PLANT_SETUP_SCREEN = "plant_setup"  // Tela de configuração da planta
-    const val MAIN_SCREEN = "main"  // Tela principal do aplicativo
+    const val BRAND_SPLASH_SCREEN = "brand_splash"
+    const val MASCOT_SPLASH_SCREEN = "mascot_splash"
+    const val ONBOARDING_FINAL_SCREEN = "onboarding_final"
+    const val AUTH_SCREEN = "auth"
+    const val PLANT_SETUP_SCREEN = "plant_setup"
+    const val MAIN_SCREEN = "main"
 }
 
 /**
- * Função que configura o fluxo de navegação entre as telas do aplicativo.
- * O fluxo segue: BrandSplashScreen -> MascotSplashScreen -> AuthScreen -> PlantSetupScreen -> MainScreen
+ * Componente de navegação que define o fluxo de telas do aplicativo.
  *
- * @param navController O controlador de navegação, usado para gerenciar o fluxo de telas.
+ * @param navController Controlador responsável por gerenciar a navegação entre as telas.
  */
 @Composable
 fun AppNavigation(
@@ -55,16 +60,13 @@ fun AppNavigation(
 ) {
     val activity = LocalContext.current as? Activity
 
-    // O NavHost define o destino inicial e os destinos possíveis no fluxo de navegação.
     NavHost(
         navController = navController,
-        startDestination = Destinations.BRAND_SPLASH_SCREEN  // Inicia com a tela de splash da marca
+        startDestination = Destinations.BRAND_SPLASH_SCREEN
     ) {
-        // Define o comportamento da tela de splash da marca
         composable(Destinations.BRAND_SPLASH_SCREEN) {
             BrandSplashScreen(
                 onNavigateToMascotSplash = {
-                    // Navega para a tela de splash da mascote e remove a splash da marca da pilha de navegação
                     navController.navigate(Destinations.MASCOT_SPLASH_SCREEN) {
                         popUpTo(Destinations.BRAND_SPLASH_SCREEN) { inclusive = true }
                     }
@@ -72,11 +74,9 @@ fun AppNavigation(
             )
         }
 
-        // Define o comportamento da tela de splash da mascote
         composable(Destinations.MASCOT_SPLASH_SCREEN) {
             MascotSplashScreen(
                 onNavigateToAuth = {
-                    // Navega para a tela de autenticação e remove a splash da mascote da pilha de navegação
                     navController.navigate(Destinations.AUTH_SCREEN) {
                         popUpTo(Destinations.MASCOT_SPLASH_SCREEN) { inclusive = true }
                     }
@@ -84,43 +84,44 @@ fun AppNavigation(
             )
         }
 
-        // Define o comportamento da tela de autenticação
-        composable(Destinations.AUTH_SCREEN) {
-            // Impede voltar com o botão físico
-            BackHandler {
-                // Opcionalmente sair do app
-                activity?.finish()
-            }
-
-            AuthScreen(
-                onNavigateToPlantSetup = {
-                    // Quando autenticado, navega para a tela de configuração da planta
+        composable(Destinations.ONBOARDING_FINAL_SCREEN) {
+            OnboardingFinalScreen(
+                onClickSim = {
                     navController.navigate(Destinations.PLANT_SETUP_SCREEN)
-                }
-            )
-        }
-
-        // Define o comportamento da tela de configuração da planta
-        composable(Destinations.PLANT_SETUP_SCREEN) {
-            PlantSetupScreen(
-                onNavigateToMain = {
-                    // Quando a configuração da planta for concluída, navega para a tela principal
-                    navController.navigate(Destinations.MAIN_SCREEN) {
-                        popUpTo(Destinations.AUTH_SCREEN) { inclusive = true }
-                    }
                 },
-                onNavigateBack = {
-                    // Volta para a tela de autenticação
+                onBackClick = {
                     navController.navigateUp()
                 }
             )
         }
 
-        // Define o comportamento da tela principal
-        composable(Destinations.MAIN_SCREEN) {
-            // Impede voltar para a tela de setup com o botão físico
+        composable(Destinations.AUTH_SCREEN) {
             BackHandler {
-                // Opcionalmente sair do app
+                activity?.finish()
+            }
+
+            AuthScreen(
+                onNavigateToPlantSetup = {
+                    navController.navigate(Destinations.PLANT_SETUP_SCREEN)
+                }
+            )
+        }
+
+        composable(Destinations.PLANT_SETUP_SCREEN) {
+            PlantSetupScreen(
+                onNavigateToMain = {
+                    navController.navigate(Destinations.MAIN_SCREEN) {
+                        popUpTo(Destinations.AUTH_SCREEN) { inclusive = true }
+                    }
+                },
+                onNavigateBack = {
+                    navController.navigate(Destinations.ONBOARDING_FINAL_SCREEN)
+                }
+            )
+        }
+
+        composable(Destinations.MAIN_SCREEN) {
+            BackHandler {
                 activity?.finish()
             }
 
@@ -128,7 +129,6 @@ fun AppNavigation(
                 peronaName = "Ivy",
                 userName = "Usuário",
                 onExitApp = {
-                    // Sair do aplicativo
                     activity?.finish()
                 }
             )

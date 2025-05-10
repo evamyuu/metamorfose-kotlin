@@ -7,7 +7,7 @@
  * - Implementa o mascote da planta como um componente separado
  * - Encapsula dropdowns para seleção de plantas e cores de vaso
  *
- * Author: [Seu Nome]
+ * Author: Gabriel Souza Teixeira
  * Created on: 05-05-2025
  * Last modified: 05-05-2025
  * Version: 1.0.0

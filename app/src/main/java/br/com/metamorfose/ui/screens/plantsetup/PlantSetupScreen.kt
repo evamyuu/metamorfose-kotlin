@@ -9,8 +9,7 @@
  * - Oferece opção para tirar uma foto da planta ou ignorar essa etapa
  * - Exibe um mascote personalizado representando a planta
  *
- * Author: [Seu Nome]
- * Modified by: [Seu Nome]
+ * Author: Gabriel Souza Teixeira
  * Created on: 05-05-2025
  * Last modified: 08-05-2025
  * Version: 1.1.0

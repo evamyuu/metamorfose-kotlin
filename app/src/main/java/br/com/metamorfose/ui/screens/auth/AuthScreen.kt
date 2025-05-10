@@ -7,7 +7,6 @@
  * - Inclui opções de login social (Google, Facebook) e controles para visibilidade de senha.
  *
  * Author: Evelin Cordeiro
- * Modified by: [Seu Nome]
  * Created on: 28-04-2025
  * Last modified: 08-05-2025
  * Version: 2.0.0
@@ -76,13 +75,23 @@ fun AuthScreen(
                 .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Botão de voltar - removido pois não deve ser possível voltar da tela de autenticação
+
+            // Botão de voltar
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(WindowInsets.systemBars.asPaddingValues())
             ) {
-                // Espaço reservado para manter o layout
+                IconButton(
+                    onClick = { /* Navegar para trás */ },
+                    modifier = Modifier.align(Alignment.CenterStart)
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.ArrowBack,
+                        contentDescription = "Voltar",
+                        tint = BlackLight
+                    )
+                }
             }
 
             // Conteúdo principal com Ivy e Card

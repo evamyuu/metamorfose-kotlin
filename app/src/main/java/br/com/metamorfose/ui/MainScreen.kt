@@ -7,8 +7,7 @@
  * - Mostrar o personagem Ivy e facilitar a interação do usuário
  * - Fornecer acesso às funcionalidades principais do app
  *
- * Author: [Autor Original]
- * Modified by: [Seu Nome]
+ * Author: Ester Silva
  * Created on: 28-04-2025
  * Last modified: 08-05-2025
  * Version: 2.0.0
@@ -25,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.com.metamorfose.ui.components.BottomNavigationBar
 import br.com.metamorfose.ui.components.CharacterSection
 import br.com.metamorfose.ui.components.ConversationText
 import br.com.metamorfose.ui.theme.MetamorfoseTheme

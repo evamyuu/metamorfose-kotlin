@@ -14,6 +14,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,10 +52,13 @@ private object OnboardingWelcomeVariables {
     val ButtonWidth: Dp = 358.dp
 }
 
+
 @Composable
 fun OnboardingWelcomeScreen(
     onNavigateNext: () -> Unit
 ) {
+
+
     MetamorfoseTheme {
         Box(
             modifier = Modifier
@@ -157,7 +164,7 @@ fun OnboardingWelcomeScreen(
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .align(Alignment.TopStart)
-                    .offset(x = 205.46.dp, y = 355.dp)
+                    .offset(x = 183.46.dp, y = 335.dp)
                     .width(22.47.dp)
                     .height(18.72.dp)
                     .zIndex(2.1f)
@@ -176,7 +183,7 @@ fun OnboardingWelcomeScreen(
                 PrimaryButton(
                     text = "VAMOS LÁ",
                     onClick = onNavigateNext,
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }

@@ -23,12 +23,10 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -63,7 +61,7 @@ fun OnboardingWelcomeScreen(
             // --- Elemento: wave_01.xml ---
             // Posição: X: 0, Y: 0
             Image(
-                painter = painterResource(id = R.drawable.wave_01), // Certifique-se que R.drawable.wave_01 existe
+                painter = painterResource(id = R.drawable.bg_wave_4), // Certifique-se que R.drawable.wave_01 existe
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier

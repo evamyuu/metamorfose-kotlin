@@ -11,14 +11,13 @@
  * Author: Vitoria Lana
  * Created on: 09-05-2025
  * Last modified: 10-05-2025
- * Version: 2.0.0
+ * Version: 2.1.0
  * Squad: Metamorfose
  *
- *  * Changelog:
- *  * - [10-05-2025] Adicionado Onboarding. (por Evelin Cordeiro)
- *
+ * Changelog:
+ * - [10-05-2025] Adicionado Onboarding. (por Evelin Cordeiro)
+ * - [10-05-2025] Substituído MainScreen por VoiceChatScreen. (por ChatGPT)
  */
-
 
 package br.com.metamorfose.ui.navigation
 
@@ -30,8 +29,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.metamorfose.ui.MainScreen
 import br.com.metamorfose.ui.screens.auth.AuthScreen
+import br.com.metamorfose.ui.screens.chat.VoiceChatScreen
 import br.com.metamorfose.ui.screens.onboarding.OnboardingFinalScreen
 import br.com.metamorfose.ui.screens.plantsetup.PlantSetupScreen
 import br.com.metamorfose.ui.screens.splash.BrandSplashScreen
@@ -46,7 +45,7 @@ object Destinations {
     const val ONBOARDING_FINAL_SCREEN = "onboarding_final"
     const val AUTH_SCREEN = "auth"
     const val PLANT_SETUP_SCREEN = "plant_setup"
-    const val MAIN_SCREEN = "main"
+    const val VOICE_CHAT_SCREEN = "voice_chat"
 }
 
 /**
@@ -110,7 +109,7 @@ fun AppNavigation(
         composable(Destinations.PLANT_SETUP_SCREEN) {
             PlantSetupScreen(
                 onNavigateToMain = {
-                    navController.navigate(Destinations.MAIN_SCREEN) {
+                    navController.navigate(Destinations.VOICE_CHAT_SCREEN) {
                         popUpTo(Destinations.AUTH_SCREEN) { inclusive = true }
                     }
                 },
@@ -120,16 +119,21 @@ fun AppNavigation(
             )
         }
 
-        composable(Destinations.MAIN_SCREEN) {
+        composable(Destinations.VOICE_CHAT_SCREEN) {
             BackHandler {
                 activity?.finish()
             }
 
-            MainScreen(
-                peronaName = "Ivy",
-                userName = "Usuário",
-                onExitApp = {
-                    activity?.finish()
+            VoiceChatScreen(
+                characterName = "Usuário",
+                plantName = "Ivy",
+                onHomeClick = { /* Implementar ação futura se necessário */ },
+                onMicrophoneClick = { /* Implementar ação de microfone */ },
+                onProfileClick = { /* Implementar ação de perfil */ },
+                onExitClick = {
+                    navController.navigate(Destinations.AUTH_SCREEN) {
+                        popUpTo(Destinations.VOICE_CHAT_SCREEN) { inclusive = true }
+                    }
                 }
             )
         }

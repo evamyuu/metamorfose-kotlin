@@ -9,10 +9,10 @@
  * - Oferece opção para tirar uma foto da planta ou ignorar essa etapa
  * - Exibe um mascote personalizado representando a planta
  *
- * Author: [Seu Nome]
+ * Author: Gabriel Souza Teixeira
  * Created on: 05-05-2025
- * Last modified: 05-05-2025
- * Version: 1.0.0
+ * Last modified: 08-05-2025
+ * Version: 1.1.0
  * Squad: Metamorfose
  *
  */
@@ -23,55 +23,39 @@ import CustomTextField
 import SelectField
 import Separator
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import androidx.lifecycle.viewmodel.compose.viewModel
 import br.com.metamorfose.ui.components.buttons.PrimaryButton
 import br.com.metamorfose.ui.theme.*
 import br.com.metamorfose.R
-import androidx.compose.ui.platform.LocalConfiguration
-import androidx.lifecycle.viewmodel.compose.viewModel
 import br.com.metamorfose.ui.components.buttons.SecondButton
-import br.com.metamorfose.ui.components.buttons.SocialLoginButton
-import br.com.metamorfose.ui.components.buttons.ToggleButtonGroup
-import br.com.metamorfose.ui.components.inputs.CheckboxWithText
-import br.com.metamorfose.ui.components.inputs.PasswordTextField
-import br.com.metamorfose.ui.components.ivy.IvyCharacter
 import br.com.metamorfose.ui.components.ivy.PlantSetupIvyCharacter
 import br.com.metamorfose.ui.components.layout.CardContainer
 import br.com.metamorfose.ui.components.layout.GradientBackground
-import br.com.metamorfose.ui.screens.auth.AuthViewModel
-import br.com.metamorfose.ui.state.auth.AuthScreenMode
 
 /**
  * Tela de configuração da Planta do usuário.
  *
  * @param viewModel ViewModel contendo a configuração da planta.
- * @param onNavigate Callback acionado após configurar a planta, ou ignorar a etapa.
+ * @param onNavigateToMain Callback acionado para navegar para a tela principal.
+ * @param onNavigateBack Callback acionado para voltar à tela anterior.
  */
 @Composable
 fun PlantSetupScreen(
     viewModel: PlantSetupViewModel = viewModel(),
-    onNavigate: () -> Unit = {}
-//    navController: NavController,
-//    modifier: Modifier = Modifier
+    onNavigateToMain: () -> Unit = {},
+    onNavigateBack: () -> Unit = {}
 ) {
     GradientBackground {
         Column(
@@ -86,7 +70,7 @@ fun PlantSetupScreen(
                     .padding(WindowInsets.systemBars.asPaddingValues())
             ) {
                 IconButton(
-                    onClick = { /* Navegar para trás */ },
+                    onClick = onNavigateBack,
                     modifier = Modifier.align(Alignment.CenterStart)
                 ) {
                     Icon(
@@ -109,12 +93,16 @@ fun PlantSetupScreen(
                 )
 
                 CardContainer(
-                    modifier = Modifier.absoluteOffset(y = 100.dp)
+                    modifier = Modifier
+                        .absoluteOffset(y = 100.dp)
                         .padding(top = 240.dp, bottom = 0.dp)
                         .height(600.dp)
                 ) {
                     // Conteúdo do card
-                    PlantSetupContent(viewModel)
+                    PlantSetupContent(
+                        viewModel = viewModel,
+                        onSkipSetup = onNavigateToMain
+                    )
                 }
             }
         }
@@ -122,14 +110,18 @@ fun PlantSetupScreen(
 }
 
 /**
- * Conteúdo da aba de Login.
+ * Conteúdo da aba de configuração da planta.
  *
- * Exibe os campos de e-mail, senha, lembrete e botões sociais.
+ * Exibe os campos de nome, tipo e cor da planta.
  *
- * @param viewModel ViewModel que mantém o estado da tela de login.
+ * @param viewModel ViewModel que mantém o estado da tela de configuração da planta.
+ * @param onSkipSetup Callback acionado quando o usuário clica no botão para ignorar a configuração.
  */
 @Composable
-private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
+private fun PlantSetupContent(
+    viewModel: PlantSetupViewModel,
+    onSkipSetup: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -137,14 +129,19 @@ private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         // Campo do nome da planta
+        var plantName by remember { mutableStateOf(viewModel.getPlantName()) }
+
         CustomTextField(
-            value = "",
-            onValueChange = {},
+            value = plantName,
+            onValueChange = {
+                plantName = it
+                viewModel.setPlantName(it)
+            },
             placeholder = "Nome da planta",
             leadingIcon = {
                 Image(
                     painter = painterResource(id = R.drawable.ic_plant),
-                    contentDescription = "E-mail",
+                    contentDescription = "Planta",
                     modifier = Modifier.size(24.dp)
                 )
             },
@@ -153,32 +150,38 @@ private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
 
         // Campo do tipo da planta
         val plantTypes = listOf("Tipo 1", "Tipo 2", "Tipo 3")
-        var selectedPlantType by remember { mutableStateOf("") }
+        var selectedPlantType by remember { mutableStateOf(viewModel.getPlantType()) }
 
         SelectField(
             selectedOption = selectedPlantType,
             options = plantTypes,
-            onOptionSelected = { selectedPlantType = it },
+            onOptionSelected = {
+                selectedPlantType = it
+                viewModel.setPlantType(it)
+            },
             placeholder = "Selecione a sua planta",
             leadingIcon = {
-                 Image(
-                     painter = painterResource(id = R.drawable.ic_potted_plant),
-                     contentDescription = "Ícone de seleção",
-                     modifier = Modifier.size(24.dp)
-                 )
-             },
+                Image(
+                    painter = painterResource(id = R.drawable.ic_potted_plant),
+                    contentDescription = "Ícone de seleção",
+                    modifier = Modifier.size(24.dp)
+                )
+            },
             isError = false,
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
         // Campo da cor da planta
         val plantColors = listOf("Cor 1", "Cor 2", "Cor 3")
-        var selectedPlantColor by remember { mutableStateOf("") }
+        var selectedPlantColor by remember { mutableStateOf(viewModel.getPlantColor()) }
 
         SelectField(
             selectedOption = selectedPlantColor,
             options = plantColors,
-            onOptionSelected = { selectedPlantColor = it },
+            onOptionSelected = {
+                selectedPlantColor = it
+                viewModel.setPlantColor(it)
+            },
             placeholder = "Selecione uma cor",
             leadingIcon = {
                 Image(
@@ -191,7 +194,7 @@ private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
-        // Botão principal de login
+        // Botão principal para tirar foto
         PrimaryButton(
             text = "TIRAR A PRIMEIRA FOTO DE SUA PLANTA",
             onClick = { /* REGISTRAR INFORMAÇÕES DA PLANTA E GERAR FOTO VIRTUAL */ },
@@ -214,7 +217,7 @@ private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
         ) {
             SecondButton(
                 text = "IGNORAR ESSA ETAPA POR ENQUANTO",
-                onClick = { /* Passar para próxima tela */ },
+                onClick = onSkipSetup,
                 modifier = Modifier.weight(1f)
             )
         }
@@ -224,5 +227,7 @@ private fun PlantSetupContent(viewModel: PlantSetupViewModel) {
 @Preview(showBackground = true)
 @Composable
 fun PlantSetupScreenPreview() {
-    PlantSetupScreen()
+    MetamorfoseTheme {
+        PlantSetupScreen()
+    }
 }

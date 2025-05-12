@@ -8,8 +8,8 @@
  *
  * Author: Evelin Cordeiro
  * Created on: 28-04-2025
- * Last modified: 30-04-2025
- * Version: 1.0.0
+ * Last modified: 08-05-2025
+ * Version: 2.0.0
  * Squad: Metamorfose
  *
  */
@@ -58,12 +58,13 @@ import br.com.metamorfose.ui.theme.WhiteLight
  * Tela principal de autenticação.
  *
  * @param viewModel ViewModel de autenticação contendo os estados de login e cadastro.
- * @param onNavigateToHome Callback acionado após login bem-sucedido.
+ * @param onNavigateToPlantSetup Callback acionado após login/registro bem-sucedido para navegar para a tela de setup da planta.
  */
 @Composable
 fun AuthScreen(
     viewModel: AuthViewModel = viewModel(),
-    onNavigateToHome: () -> Unit = {}
+    onNavigateToPlantSetup: () -> Unit = {},
+    onBackClick: () -> Unit
 ) {
     val authState by viewModel.authState.collectAsState()
     val scrollState = rememberScrollState()
@@ -75,6 +76,7 @@ fun AuthScreen(
                 .verticalScroll(scrollState),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             // Botão de voltar
             Box(
                 modifier = Modifier
@@ -82,7 +84,7 @@ fun AuthScreen(
                     .padding(WindowInsets.systemBars.asPaddingValues())
             ) {
                 IconButton(
-                    onClick = { /* Navegar para trás */ },
+                    onClick = onBackClick,
                     modifier = Modifier.align(Alignment.CenterStart)
                 ) {
                     Icon(
@@ -121,8 +123,14 @@ fun AuthScreen(
 
                     // Conteúdo dinâmico
                     when (authState.mode) {
-                        is AuthScreenMode.Login -> LoginContent(viewModel)
-                        is AuthScreenMode.Register -> RegisterContent(viewModel)
+                        is AuthScreenMode.Login -> LoginContent(
+                            viewModel = viewModel,
+                            onLoginClick = onNavigateToPlantSetup
+                        )
+                        is AuthScreenMode.Register -> RegisterContent(
+                            viewModel = viewModel,
+                            onRegisterClick = onNavigateToPlantSetup
+                        )
                     }
 
                     // Texto com termos de uso
@@ -143,9 +151,13 @@ fun AuthScreen(
  * Exibe os campos de e-mail, senha, lembrete e botões sociais.
  *
  * @param viewModel ViewModel que mantém o estado da tela de login.
+ * @param onLoginClick Callback acionado quando o usuário clica no botão de login.
  */
 @Composable
-private fun LoginContent(viewModel: AuthViewModel) {
+private fun LoginContent(
+    viewModel: AuthViewModel,
+    onLoginClick: () -> Unit,
+) {
     val loginState = viewModel.loginState
 
     Column(
@@ -217,7 +229,10 @@ private fun LoginContent(viewModel: AuthViewModel) {
         // Botão principal de login
         PrimaryButton(
             text = "ENTRAR",
-            onClick = { /* Realizar login */ },
+            onClick = {
+                viewModel.login()
+                onLoginClick()
+            },
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
@@ -238,7 +253,10 @@ private fun LoginContent(viewModel: AuthViewModel) {
         ) {
             SocialLoginButton(
                 text = "Google",
-                onClick = { /* Login com Google */ },
+                onClick = {
+                    viewModel.loginWithGoogle()
+                    onLoginClick()
+                },
                 icon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_google_logo),
@@ -254,7 +272,10 @@ private fun LoginContent(viewModel: AuthViewModel) {
             )
             SocialLoginButton(
                 text = "Facebook",
-                onClick = { /* Login com Facebook */ },
+                onClick = {
+                    viewModel.loginWithFacebook()
+                    onLoginClick()
+                },
                 icon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_facebook_logo),
@@ -278,9 +299,13 @@ private fun LoginContent(viewModel: AuthViewModel) {
  * Campos reativos para nome, telefone, e-mail e senha, além de suporte a login social.
  *
  * @param viewModel ViewModel contendo o estado da tela de registro.
+ * @param onRegisterClick Callback acionado quando o usuário clica no botão de registro.
  */
 @Composable
-private fun RegisterContent(viewModel: AuthViewModel) {
+private fun RegisterContent(
+    viewModel: AuthViewModel,
+    onRegisterClick: () -> Unit
+) {
     val registerState = viewModel.registerState
 
     Column(
@@ -356,7 +381,10 @@ private fun RegisterContent(viewModel: AuthViewModel) {
 
         PrimaryButton(
             text = "CRIAR CONTA",
-            onClick = { /* Criar conta */ },
+            onClick = {
+                viewModel.register()
+                onRegisterClick()
+            },
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
@@ -375,7 +403,10 @@ private fun RegisterContent(viewModel: AuthViewModel) {
         ) {
             SocialLoginButton(
                 text = "Google",
-                onClick = { /* Cadastro com Google */ },
+                onClick = {
+                    viewModel.loginWithGoogle()
+                    onRegisterClick()
+                },
                 icon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_google_logo),
@@ -392,7 +423,10 @@ private fun RegisterContent(viewModel: AuthViewModel) {
 
             SocialLoginButton(
                 text = "Facebook",
-                onClick = { /* Cadastro com Facebook */ },
+                onClick = {
+                    viewModel.loginWithFacebook()
+                    onRegisterClick()
+                },
                 icon = {
                     Image(
                         painter = painterResource(id = R.drawable.ic_facebook_logo),
@@ -410,8 +444,59 @@ private fun RegisterContent(viewModel: AuthViewModel) {
     }
 }
 
-@Preview(showBackground = true)
+
+@Preview(showBackground = true, name = "Auth Screen - Login Mode")
 @Composable
-fun AuthScreenPreview() {
-    AuthScreen()
+fun AuthScreenLoginPreview() {
+
+        AuthScreen(
+            onNavigateToPlantSetup = {},
+            onBackClick = {}
+        )
+
 }
+
+@Preview(showBackground = true, name = "Auth Screen - Register Mode")
+@Composable
+fun AuthScreenRegisterPreview() {
+
+        val viewModel = AuthViewModel()
+        // Muda para o modo de registro
+        LaunchedEffect(Unit) {
+            viewModel.switchToRegister()
+        }
+
+        AuthScreen(
+            viewModel = viewModel,
+            onNavigateToPlantSetup = {},
+            onBackClick = {}
+        )
+
+}
+
+@Preview(showBackground = true, name = "Login Content Only")
+@Composable
+fun LoginContentPreview() {
+
+        CardContainer {
+            LoginContent(
+                viewModel = AuthViewModel(),
+                onLoginClick = {}
+            )
+
+    }
+}
+
+@Preview(showBackground = true, name = "Register Content Only")
+@Composable
+fun RegisterContentPreview() {
+
+        CardContainer {
+            RegisterContent(
+                viewModel = AuthViewModel(),
+                onRegisterClick = {}
+            )
+
+    }
+}
+

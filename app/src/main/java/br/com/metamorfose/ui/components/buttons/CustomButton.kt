@@ -9,10 +9,12 @@
  *
  * Author: Gabriel Souza Teixeira
  * Created on: 08-05-2025
- * Last modified: 30-04-2025
- * Version: 1.0.0
+ * Last modified: 10-05-2025
+ * Version: 1.1.0
  * Squad: Metamorfose
  *
+ * Changelog:
+ * - [10-05-2025] Ajuste na largura: substituído fillMaxWidth() por uso do parâmetro `width`. (por Eve)
  */
 
 package br.com.metamorfose.ui.components.buttons
@@ -47,6 +49,7 @@ import br.com.metamorfose.ui.theme.WhiteLight
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import br.com.metamorfose.ui.theme.GreenDarken
@@ -115,7 +118,7 @@ fun CustomButton(
                     }
                 }
             }
-            .fillMaxWidth()
+            .width(width)
             .height(height)
             .background(
                 color = backgroundColor,

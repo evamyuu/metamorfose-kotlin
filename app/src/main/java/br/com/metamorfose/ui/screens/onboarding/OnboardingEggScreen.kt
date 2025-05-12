@@ -1,15 +1,15 @@
 /**
- * File: OnboardingButterflyScreen.kt
- * Description: Tela final do onboarding do app Metamorfose que apresenta a borboleta
+ * File: OnboardingEggScreen.kt
+ * Description: Tela do onboarding do app Metamorfose que apresenta o casulo
  * como transformação do usuário.
  *
  * Responsabilidades:
- * - Exibe a ilustração da borboleta sobre um fundo de onda
+ * - Exibe a ilustração da casulo sobre um fundo de onda
  * - Apresenta a mensagem motivacional para o usuário
  * - Mostra os indicadores de progresso (última etapa do onboarding)
  * - Permite que o usuário continue para a próxima tela com o botão continuar
  *
- * Author: Evelin Cordeiro
+ * Author: Vinicyus Oliveira
  * Created on: 10-05-2025
  * Version: 1.0.0
  * Squad: Metamorfose
@@ -54,13 +54,13 @@ import br.com.metamorfose.ui.theme.MetamorfoseTheme
 import br.com.metamorfose.ui.theme.Typography
 
 /**
- * Tela da Borboleta - última etapa do onboarding
+ * Tela da Casulo
  *
  * @param onContinueClick Ação a ser executada quando o usuário clicar em continuar
  * @param modifier Modificador opcional para customização da UI
  */
 @Composable
-fun OnboardingButterflyScreen(
+fun OnboardingEggScreen(
     onContinueClick: () -> Unit,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -100,18 +100,18 @@ fun OnboardingButterflyScreen(
     ) {
         Spacer(modifier = Modifier.height(40.dp))
 
-        // Ilustração da borboleta
+        // Ilustração do Casulo
         Image(
-            painter = painterResource(id = R.drawable.ic_butterfly_transformation),
-            contentDescription = "Borboleta",
-            modifier = Modifier.size(313.dp, 180.dp)
+            painter = painterResource(id = R.drawable.ic_egg_transformation),
+            contentDescription = "Casulo",
+            modifier = Modifier.size(330.dp, 240.dp)
         )
 
         Spacer(modifier = Modifier.height(48.dp))
 
         // Texto motivacional
         Text(
-            text = "E esse aqui é você quando se transformar.",
+            text = "Esse é você agora, aqui começa sua jornada de transformação.",
             style = Typography.headlineSmall,
             color = GreyMedium,
             textAlign = TextAlign.Center,
@@ -134,8 +134,8 @@ fun OnboardingButterflyScreen(
                 contentAlignment = Alignment.CenterStart
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_onboarding_progress_final),
-                    contentDescription = "Progresso Final",
+                    painter = painterResource(id = R.drawable.ic_onboarding_progress_temp),
+                    contentDescription = "Progresso Intermediário",
                     modifier = Modifier.height(43.dp)
                 )
             }
@@ -157,13 +157,13 @@ fun OnboardingButterflyScreen(
 }
 
 /**
- * Preview da tela OnboardingButterflyScreen.
+ * Preview da tela OnboardingEggScreen.
  */
 @Preview(showBackground = true)
 @Composable
-fun OnboardingButterflyScreenPreview() {
+fun OnboardingEggScreenPreview() {
     MetamorfoseTheme {
-        OnboardingButterflyScreen(
+        OnboardingEggScreen(
             onContinueClick = {},
             onBackClick = {}
         )

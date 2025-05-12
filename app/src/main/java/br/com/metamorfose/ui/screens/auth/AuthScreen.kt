@@ -63,7 +63,8 @@ import br.com.metamorfose.ui.theme.WhiteLight
 @Composable
 fun AuthScreen(
     viewModel: AuthViewModel = viewModel(),
-    onNavigateToPlantSetup: () -> Unit = {}
+    onNavigateToPlantSetup: () -> Unit = {},
+    onBackClick: () -> Unit
 ) {
     val authState by viewModel.authState.collectAsState()
     val scrollState = rememberScrollState()
@@ -83,7 +84,7 @@ fun AuthScreen(
                     .padding(WindowInsets.systemBars.asPaddingValues())
             ) {
                 IconButton(
-                    onClick = { /* Navegar para trás */ },
+                    onClick = onBackClick,
                     modifier = Modifier.align(Alignment.CenterStart)
                 ) {
                     Icon(
@@ -155,7 +156,7 @@ fun AuthScreen(
 @Composable
 private fun LoginContent(
     viewModel: AuthViewModel,
-    onLoginClick: () -> Unit
+    onLoginClick: () -> Unit,
 ) {
     val loginState = viewModel.loginState
 
@@ -443,8 +444,59 @@ private fun RegisterContent(
     }
 }
 
-@Preview(showBackground = true)
+
+@Preview(showBackground = true, name = "Auth Screen - Login Mode")
 @Composable
-fun AuthScreenPreview() {
-    AuthScreen()
+fun AuthScreenLoginPreview() {
+
+        AuthScreen(
+            onNavigateToPlantSetup = {},
+            onBackClick = {}
+        )
+
 }
+
+@Preview(showBackground = true, name = "Auth Screen - Register Mode")
+@Composable
+fun AuthScreenRegisterPreview() {
+
+        val viewModel = AuthViewModel()
+        // Muda para o modo de registro
+        LaunchedEffect(Unit) {
+            viewModel.switchToRegister()
+        }
+
+        AuthScreen(
+            viewModel = viewModel,
+            onNavigateToPlantSetup = {},
+            onBackClick = {}
+        )
+
+}
+
+@Preview(showBackground = true, name = "Login Content Only")
+@Composable
+fun LoginContentPreview() {
+
+        CardContainer {
+            LoginContent(
+                viewModel = AuthViewModel(),
+                onLoginClick = {}
+            )
+
+    }
+}
+
+@Preview(showBackground = true, name = "Register Content Only")
+@Composable
+fun RegisterContentPreview() {
+
+        CardContainer {
+            RegisterContent(
+                viewModel = AuthViewModel(),
+                onRegisterClick = {}
+            )
+
+    }
+}
+

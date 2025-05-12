@@ -9,14 +9,16 @@
  * - Controlar a navegação utilizando o NavController.
  *
  * Author: Vitoria Lana
+ * Modified by: [Seu Nome]
  * Created on: 09-05-2025
- * Last modified: 10-05-2025
- * Version: 2.1.0
+ * Last modified: 11-05-2025
+ * Version: 3.0.0
  * Squad: Metamorfose
  *
  * Changelog:
  * - [10-05-2025] Adicionado Onboarding. (por Evelin Cordeiro)
  * - [10-05-2025] Substituído MainScreen por VoiceChatScreen. (por ChatGPT)
+ * - [11-05-2025] Implementado fluxo completo de navegação incluindo todas as telas de onboarding.
  */
 
 package br.com.metamorfose.ui.navigation
@@ -31,7 +33,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.metamorfose.ui.screens.auth.AuthScreen
 import br.com.metamorfose.ui.screens.chat.VoiceChatScreen
+import br.com.metamorfose.ui.screens.onboarding.OnboardingButterflyScreen
+import br.com.metamorfose.ui.screens.onboarding.OnboardingEggScreen
 import br.com.metamorfose.ui.screens.onboarding.OnboardingFinalScreen
+import br.com.metamorfose.ui.screens.onboarding.OnboardingPlantScreen
+import br.com.metamorfose.ui.screens.onboarding.OnboardingScreen
+import br.com.metamorfose.ui.screens.onboarding.OnboardingWelcomeScreen
 import br.com.metamorfose.ui.screens.plantsetup.PlantSetupScreen
 import br.com.metamorfose.ui.screens.splash.BrandSplashScreen
 import br.com.metamorfose.ui.screens.splash.MascotSplashScreen
@@ -42,6 +49,11 @@ import br.com.metamorfose.ui.screens.splash.MascotSplashScreen
 object Destinations {
     const val BRAND_SPLASH_SCREEN = "brand_splash"
     const val MASCOT_SPLASH_SCREEN = "mascot_splash"
+    const val ONBOARDING_SCREEN = "onboarding"
+    const val ONBOARDING_WELCOME = "onboarding_welcome"
+    const val ONBOARDING_PLANT_SCREEN = "onboarding_plant"
+    const val ONBOARDING_EGG_SCREEN = "onboarding_egg"
+    const val ONBOARDING_BUTTERFLY_SCREEN = "onboarding_butterfly"
     const val ONBOARDING_FINAL_SCREEN = "onboarding_final"
     const val AUTH_SCREEN = "auth"
     const val PLANT_SETUP_SCREEN = "plant_setup"
@@ -63,6 +75,7 @@ fun AppNavigation(
         navController = navController,
         startDestination = Destinations.BRAND_SPLASH_SCREEN
     ) {
+        // Tela de splash da marca
         composable(Destinations.BRAND_SPLASH_SCREEN) {
             BrandSplashScreen(
                 onNavigateToMascotSplash = {
@@ -73,20 +86,46 @@ fun AppNavigation(
             )
         }
 
+        // Tela de splash da mascote
         composable(Destinations.MASCOT_SPLASH_SCREEN) {
             MascotSplashScreen(
                 onNavigateToAuth = {
-                    navController.navigate(Destinations.AUTH_SCREEN) {
+                    navController.navigate(Destinations.ONBOARDING_SCREEN) {
                         popUpTo(Destinations.MASCOT_SPLASH_SCREEN) { inclusive = true }
                     }
                 }
             )
         }
 
-        composable(Destinations.ONBOARDING_FINAL_SCREEN) {
-            OnboardingFinalScreen(
-                onClickSim = {
-                    navController.navigate(Destinations.PLANT_SETUP_SCREEN)
+        // Primeira tela de onboarding
+        composable(Destinations.ONBOARDING_SCREEN) {
+            OnboardingScreen(
+                onLoginClick = {
+                    navController.navigate(Destinations.AUTH_SCREEN)
+                },
+                onStartClick = {
+                    navController.navigate(Destinations.ONBOARDING_WELCOME)
+                }
+            )
+        }
+
+        // Tela de boas-vindas do onboarding
+        composable(Destinations.ONBOARDING_WELCOME) {
+            OnboardingWelcomeScreen(
+                onNavigateNext = {
+                    navController.navigate(Destinations.ONBOARDING_PLANT_SCREEN)
+                },
+                onNavigateBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        // Tela da planta no onboarding
+        composable(Destinations.ONBOARDING_PLANT_SCREEN) {
+            OnboardingPlantScreen(
+                onContinueClick = {
+                    navController.navigate(Destinations.ONBOARDING_EGG_SCREEN)
                 },
                 onBackClick = {
                     navController.navigateUp()
@@ -94,18 +133,63 @@ fun AppNavigation(
             )
         }
 
+        // Tela da casulo no onboarding
+        composable(Destinations.ONBOARDING_EGG_SCREEN) {
+            OnboardingEggScreen(
+                onContinueClick = {
+                    navController.navigate(Destinations.ONBOARDING_BUTTERFLY_SCREEN)
+                },
+                onBackClick = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        // Tela da borboleta no onboarding
+        composable(Destinations.ONBOARDING_BUTTERFLY_SCREEN) {
+            OnboardingButterflyScreen(
+                onContinueClick = {
+                    navController.navigate(Destinations.ONBOARDING_FINAL_SCREEN)
+                },
+                onBackClick = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        // Tela final do onboarding
+        composable(Destinations.ONBOARDING_FINAL_SCREEN) {
+            OnboardingFinalScreen(
+                onClickSim = {
+                    navController.navigate(Destinations.AUTH_SCREEN)
+                },
+                onBackClick = {
+                    navController.navigateUp()
+                }
+            )
+        }
+
+        // Tela de autenticação
         composable(Destinations.AUTH_SCREEN) {
+            // Impede voltar para o onboarding
             BackHandler {
-                activity?.finish()
+                navController.navigate(Destinations.ONBOARDING_SCREEN) {
+                    popUpTo(Destinations.AUTH_SCREEN) { inclusive = true }
+                }
             }
 
             AuthScreen(
                 onNavigateToPlantSetup = {
                     navController.navigate(Destinations.PLANT_SETUP_SCREEN)
+
+                },
+                onBackClick = {
+                    navController.navigateUp()
                 }
             )
         }
 
+        // Tela de configuração da planta
         composable(Destinations.PLANT_SETUP_SCREEN) {
             PlantSetupScreen(
                 onNavigateToMain = {
@@ -114,12 +198,14 @@ fun AppNavigation(
                     }
                 },
                 onNavigateBack = {
-                    navController.navigate(Destinations.ONBOARDING_FINAL_SCREEN)
+                    navController.navigateUp()
                 }
             )
         }
 
+        // Tela de chat por voz
         composable(Destinations.VOICE_CHAT_SCREEN) {
+            // Impede voltar para o plant setup
             BackHandler {
                 activity?.finish()
             }
@@ -131,9 +217,7 @@ fun AppNavigation(
                 onMicrophoneClick = { /* Implementar ação de microfone */ },
                 onProfileClick = { /* Implementar ação de perfil */ },
                 onExitClick = {
-                    navController.navigate(Destinations.AUTH_SCREEN) {
-                        popUpTo(Destinations.VOICE_CHAT_SCREEN) { inclusive = true }
-                    }
+                    activity?.finish()
                 }
             )
         }

@@ -63,6 +63,7 @@ import br.com.metamorfose.ui.theme.Typography
 @Composable
 fun OnboardingPlantScreen(
     onContinueClick: () -> Unit,
+    onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -72,7 +73,7 @@ fun OnboardingPlantScreen(
             .zIndex(1f)
     ) {
         IconButton(
-            onClick = { /* Navegar para trás */ },
+            onClick = onBackClick,
             modifier = Modifier.align(Alignment.CenterStart)
         ) {
             Icon(
@@ -164,7 +165,8 @@ fun OnboardingPlantScreen(
 fun OnboardingPlantScreenPreview() {
     MetamorfoseTheme {
         OnboardingPlantScreen(
-            onContinueClick = {}
+            onContinueClick = {},
+            onBackClick = {}
         )
     }
 }

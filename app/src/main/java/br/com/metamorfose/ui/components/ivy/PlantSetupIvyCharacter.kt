@@ -48,7 +48,7 @@ fun PlantSetupIvyCharacter(
         modifier = modifier.size(size.dp),
         contentAlignment = Alignment.Center
     ) {
-        val imageRes = R.drawable.ivy_plant_setup
+        val imageRes = R.drawable.virtual_plant_setup
 
         Image(
             painter = painterResource(id = imageRes),

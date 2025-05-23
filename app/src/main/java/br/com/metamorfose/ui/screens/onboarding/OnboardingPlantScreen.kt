@@ -103,7 +103,7 @@ fun OnboardingPlantScreen(
 
         // Ilustração da borboleta
         Image(
-            painter = painterResource(id = R.drawable.ivy_plant_onboarding),
+            painter = painterResource(id = R.drawable.virtual_plant_onboarding),
             contentDescription = "Planta",
             modifier = Modifier.size(193.dp, 251.dp)
         )

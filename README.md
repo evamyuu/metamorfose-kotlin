@@ -92,7 +92,7 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
     <td align="center">
       <a href="https://github.com/ester-silvaa">
         <img src="https://avatars.githubusercontent.com/u/101530020?v=4" width="100px;" alt="Ester Santos"/><br>
-        <sub><b>Ester Santos</b></sub>
+        <sub><b>Ester Silva</b></sub>
       </a>
     </td>
   </tr>

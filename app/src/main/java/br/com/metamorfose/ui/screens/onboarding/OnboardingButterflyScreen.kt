@@ -102,7 +102,7 @@ fun OnboardingButterflyScreen(
 
         // Ilustração da borboleta
         Image(
-            painter = painterResource(id = R.drawable.ic_butterfly_transformation),
+            painter = painterResource(id = R.drawable.butterfly_transformation),
             contentDescription = "Borboleta",
             modifier = Modifier.size(313.dp, 180.dp)
         )
@@ -134,7 +134,7 @@ fun OnboardingButterflyScreen(
                 contentAlignment = Alignment.CenterStart
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_onboarding_progress_final),
+                    painter = painterResource(id = R.drawable.ui_component_onboarding_progress_final),
                     contentDescription = "Progresso Final",
                     modifier = Modifier.height(43.dp)
                 )

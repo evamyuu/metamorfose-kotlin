@@ -51,7 +51,7 @@ fun VoiceChatScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_plant_setup),
+                    painter = painterResource(id = R.drawable.plant_setup),
                     contentDescription = "Decorative background",
                     modifier = Modifier
                         .size(200.dp)
@@ -60,7 +60,7 @@ fun VoiceChatScreen(
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.ic_background),
+                    painter = painterResource(id = R.drawable.bg_circle),
                     contentDescription = "Plant character",
                     modifier = Modifier
                         .size(360.dp)

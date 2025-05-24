@@ -83,7 +83,7 @@ fun OnboardingScreen(
 
                 // Logo
                 Image(
-                    painter = painterResource(R.drawable.ic_logo),
+                    painter = painterResource(R.drawable.logo),
                     contentDescription = "Logo Metamorfose",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier

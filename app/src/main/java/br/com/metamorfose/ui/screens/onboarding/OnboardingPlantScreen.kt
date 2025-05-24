@@ -135,7 +135,7 @@ fun OnboardingPlantScreen(
                 contentAlignment = Alignment.CenterStart
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_onboarding_progress_center),
+                    painter = painterResource(id = R.drawable.ui_component_onboarding_progress_center),
                     contentDescription = "Progresso Final",
                     modifier = Modifier.height(43.dp)
                 )

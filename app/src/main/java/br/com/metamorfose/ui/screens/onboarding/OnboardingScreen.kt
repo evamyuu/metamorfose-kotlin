@@ -8,9 +8,13 @@
  *
  * Author: Vinicyus Oliveira
  * Created on: 10-05-2025
- * Last modified: 11-05-2025
- * Version: 1.1.0
+ * Last modified: 23-05-2025
+ * Version: 1.2.0
  * Squad: Metamorfose
+ *
+ * Changelog:
+ * - [23-05-2025] Ajuste do tom de cinza do texto (por Ester Silva).
+ *
  */
 
 package br.com.metamorfose.ui.screens.onboarding
@@ -50,7 +54,7 @@ import br.com.metamorfose.ui.components.buttons.SecondButton
 import br.com.metamorfose.ui.theme.MetamorfoseTheme
 
 // Cores específicas para o texto do OnboardingScreen
-private val TextBaseColorOnboarding = Color(0xFF424242)
+private val TextBaseColorOnboarding = Color(0xFF757575)
 private val CrescimentoColor = Color(0xFF6EF575) // Verde para "crescimento" e "morfose"
 private val JornadaColor = Color(0xFFB18EF2)     // Roxo para "jornada" e "meta"
 

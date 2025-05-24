@@ -1,5 +1,5 @@
 /**
- * File: OnboardingWelcome.kt
+ * File: OnboardingWelcomeScreen.kt
  * Description: Tela de boas-vindas após o onboarding inicial, apresentando o mascote Ivy.
  * Author: Vinicyus Oliveira
  * Created on: 10-05-2025

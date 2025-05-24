@@ -8,9 +8,13 @@
  *
  * Author: Evelin Cordeiro
  * Created on: 28-04-2025
- * Last modified: 08-05-2025
- * Version: 2.0.0
+ * Last modified: 23-05-2025
+ * Version: 2.1.0
  * Squad: Metamorfose
+ *
+ * Changelog:
+ *
+ * - [23-05-2025] Modificado para aceitar diferentes tamanhos de textos (por Eve)
  *
  */
 
@@ -27,6 +31,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 
 /**
  * Componente de botão primário (usado para ações principais na interface do usuário),
@@ -48,7 +54,8 @@ import androidx.compose.runtime.getValue
 fun PrimaryButton(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fontSize: TextUnit = 16.sp
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -59,7 +66,8 @@ fun PrimaryButton(
         textColor = WhiteLight,
         strokeColor = PurpleNormal,
         shadowColor = PurpleDarken,
-        backgroundColor = PurpleNormal
+        backgroundColor = PurpleNormal,
+        fontSize = fontSize
     )
 }
 

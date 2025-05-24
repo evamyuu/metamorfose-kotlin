@@ -10,8 +10,14 @@
  *
  * Author: Evelin Cordeiro
  * Created on: 10-05-2025
+ * Last modified: 23-05-2025
  * Version: 1.0.0
  * Squad: Metamorfose
+ *
+ * Changelog:
+ *
+ * - [23-05-2025] Ajustado padding e background (por Eve)
+ *
  */
 
 package br.com.metamorfose.ui.screens.onboarding
@@ -60,7 +66,6 @@ fun OnboardingFinalScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(WhiteLight)
-            .padding(WindowInsets.systemBars.asPaddingValues())
     ) {
         // Fundo
         Image(
@@ -132,18 +137,18 @@ fun OnboardingFinalScreen(
             )
         }
 
-        // Botão "SIM!"
+        // Botão "SIM!" com tamanho específico
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(WindowInsets.navigationBars.asPaddingValues()),
+                .padding(WindowInsets.navigationBars.asPaddingValues())
+                .padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
             PrimaryButton(
                 text = "SIM!",
                 onClick = onClickSim,
-                modifier = Modifier
-                    .fillMaxWidth()
+                modifier = Modifier.size(width = 358.dp, height = 43.dp)
             )
         }
     }

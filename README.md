@@ -1,6 +1,6 @@
 # 🦋 Metamorfose – Aplicativo de Superação de Vícios
 
-> “Uma jornada de transformação e crescimento começa com um passo. E nós estamos aqui para dar esse passo com você.”
+> “Seu crescimento, sua jornada, sua metamorfose”
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/evamyuu/metamorfose-app?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/evamyuu/metamorfose-app?style=for-the-badge)
@@ -15,23 +15,14 @@
 
 Metamorfose é um aplicativo mobile que combina tecnologia, natureza e inteligência artificial para auxiliar pessoas na superação de vícios – sejam eles comportamentais, químicos ou tecnológicos. Inspirado pelos princípios da Sociedade 5.0, o projeto oferece uma abordagem humanizada, sensível e simbólica.
 
-## 🧠 Tecnologias Utilizadas
+## 🛠 Pré-requisitos
 
-- **Front-end Mobile:** Kotlin (Jetpack Compose) → migração para Flutter
-- **Back-end/API:** Node.js + Express.js (em análise)
-- **IA e NLP:** Integração com API da OpenAI
-- **Banco de Dados:** SQLite (local), com estudos para PostgreSQL ou Firebase
-- **Arquitetura:** MVVM + Microsserviços
-- **Monitoramento:** ManageEngine Site24x7 (RUM, APM, APIs)
-- **Governança:** COBIT + LGPD + SOX Compliance
-
-## 🛠️ Estrutura Organizacional
-
-- **Planejamento Estratégico:** Framework TOGAF + BSC (Balanced Scorecard)
-- **Metodologias:** Design Thinking + Scrum + DevOps
-- **Segurança:** Criptografia ponta-a-ponta, autenticação multifator e logs imutáveis
-- **Infraestrutura Inicial:** Arquitetura local + uso de APIs externas
-- **Modelo de Entrega:** SaaS + AIaaS
+- Kotlin
+- SDK: API 27 (Oreo; Android 8.1)
+- Jetpack Compose 
+- Firebase e Room
+- API da OpenAI
+- Arquitetura MVVM + Microsserviços
 
 ## 🌿 Funcionalidades Principais
 
@@ -57,17 +48,6 @@ Metamorfose é um aplicativo mobile que combina tecnologia, natureza e inteligê
 - IA adaptativa e empática, com resposta por voz ou texto  
 - Conexão com a natureza como metáfora do crescimento pessoal  
 - Alinhamento com os valores da Sociedade 5.0  
-
-## 🔎 Detalhes do Projeto
-
-> [!NOTE]  
-> O Metamorfose vai além de um app técnico — é uma ponte entre **tecnologia e afeto**, usando elementos naturais e digitais para reforçar a transformação pessoal.
-
-- **Elemento físico (planta real):** Progresso simbólico e materializado.
-- **Elemento digital (planta + IA):** Interações sensíveis, orientadas por comportamento.
-- **Personalização e adaptabilidade:** IA moldada ao perfil do usuário.
-- **Governança robusta:** Segurança e ética de ponta a ponta.
-- **Stack moderna e escalável:** Pronta para crescimento contínuo.
 
 ## 🚧 Ajustes e melhorias
 

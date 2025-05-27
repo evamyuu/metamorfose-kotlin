@@ -18,7 +18,7 @@ Metamorfose é um aplicativo mobile que combina tecnologia, natureza e inteligê
 ## 🛠 Pré-requisitos
 
 - Kotlin
-- SDK: API 27 (Oreo; Android 8.1)
+- SDK: API 27 (Oreo; Android 8.1) ou superior
 - Jetpack Compose 
 - Firebase e Room
 - API da OpenAI

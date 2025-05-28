@@ -214,8 +214,6 @@ private fun PlantSetupContent(
             fontSize = 14.sp
         )
 
-// O Separator foi removido.
-
 // Botão "Ignorar por enquanto"
         Row(
             modifier = Modifier

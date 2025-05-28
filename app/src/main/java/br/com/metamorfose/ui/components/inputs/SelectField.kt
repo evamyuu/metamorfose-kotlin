@@ -15,6 +15,11 @@
  * Version: 1.0.0
  * Squad: Metamorfose
  *
+ *  Changelog:
+ *
+ *  - [23-05-2025] Ajustado as cores do botão ic_arrow up e down adicionando tint = PurpleNormal de acordo com o Figma (por Vinicyus)
+ *
+ *
  */
 
 import androidx.compose.foundation.Image
@@ -55,6 +60,7 @@ import androidx.compose.ui.res.painterResource
 import br.com.metamorfose.R
 import br.com.metamorfose.ui.theme.GreyExtraLight
 import br.com.metamorfose.ui.theme.GreyMedium
+import br.com.metamorfose.ui.theme.PurpleNormal
 import br.com.metamorfose.ui.theme.Typography
 
 /**
@@ -148,7 +154,8 @@ fun SelectField(
                     Icon(
                         painter = painterResource(id = if (expanded) R.drawable.ic_arrow_up else R.drawable.ic_arrow_down),
                         contentDescription = if (expanded) "Fechar seleção" else "Abrir seleção",
-                        modifier = Modifier.clickable(enabled = enabled) { expanded = !expanded }
+                        modifier = Modifier.clickable(enabled = enabled) { expanded = !expanded },
+                        tint = PurpleNormal //
                     )
                 },
                 singleLine = true,

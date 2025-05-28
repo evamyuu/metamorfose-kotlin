@@ -18,6 +18,7 @@
  *  Changelog:
  *
  *  - [23-05-2025] Ajustado fontSize de acordo com o Figma (por Eve)
+ *  - [27-05-2025] Ajustado espaçamento de acordo com o Figma (por Vinicyus)
  *
  */
 
@@ -196,30 +197,33 @@ private fun PlantSetupContent(
                 )
             },
             isError = false,
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier.padding(
+                top = 16.dp,
+                bottom = 25.dp
+            )
         )
 
-        // Botão principal para tirar foto
+// Botão principal para tirar foto
         PrimaryButton(
             text = "TIRAR A PRIMEIRA FOTO DE SUA PLANTA",
             onClick = { /* REGISTRAR INFORMAÇÕES DA PLANTA E GERAR FOTO VIRTUAL */ },
-            modifier = Modifier.padding(vertical = 16.dp),
+            modifier = Modifier.padding(
+                top = 15.dp,
+                bottom = 25.dp
+            ),
             fontSize = 14.sp
         )
 
-        // Divisor "OU"
-        Separator(
-            modifier = Modifier.padding(vertical = 16.dp),
-            text = "OU",
-            dividerColor = WhiteDark,
-            textColor = GreyLight
-        )
+// O Separator foi removido.
 
-        // Botão "Ignorar por enquanto"
+// Botão "Ignorar por enquanto"
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .padding(
+                    top = 25.dp,
+                    bottom = 8.dp
+                ),
         ) {
             SecondButton(
                 text = "IGNORAR ESSA ETAPA POR ENQUANTO",

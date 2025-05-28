@@ -1,3 +1,24 @@
+/*
+* File: VoiceChatScreen.kt
+* Description: Tela de interface para chat por voz com personagem virtual.
+*
+* Responsabilidades:
+* * Renderiza a interface visual do chat por voz
+* * Exibe informações do personagem e planta virtual
+* * Gerencia interações de navegação e controles de áudio
+* * Implementa barra de navegação inferior com microfone
+*
+* Author: Ester Silva
+* Created on: 10-05-2025
+* Last modified: 24-05-2025
+* Version: 2.0.0
+* Squad: Metamorfose
+*
+* Changelog:
+* - [24-05-2025] Reinserção do comentário de cabeçalho (por Ester Silva).
+*
+*/
+
 package br.com.metamorfose.ui.screens.chat
 
 import androidx.compose.foundation.Image
@@ -51,7 +72,7 @@ fun VoiceChatScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_plant_setup),
+                    painter = painterResource(id = R.drawable.plant_setup),
                     contentDescription = "Decorative background",
                     modifier = Modifier
                         .size(200.dp)
@@ -60,7 +81,7 @@ fun VoiceChatScreen(
                 )
 
                 Image(
-                    painter = painterResource(id = R.drawable.ic_background),
+                    painter = painterResource(id = R.drawable.bg_circle),
                     contentDescription = "Plant character",
                     modifier = Modifier
                         .size(360.dp)

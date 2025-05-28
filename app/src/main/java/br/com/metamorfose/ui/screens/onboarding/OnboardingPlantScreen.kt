@@ -103,7 +103,7 @@ fun OnboardingPlantScreen(
 
         // Ilustração da borboleta
         Image(
-            painter = painterResource(id = R.drawable.ivy_plant_onboarding),
+            painter = painterResource(id = R.drawable.virtual_plant_onboarding),
             contentDescription = "Planta",
             modifier = Modifier.size(193.dp, 251.dp)
         )
@@ -135,7 +135,7 @@ fun OnboardingPlantScreen(
                 contentAlignment = Alignment.CenterStart
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_onboarding_progress_center),
+                    painter = painterResource(id = R.drawable.ui_component_onboarding_progress_center),
                     contentDescription = "Progresso Final",
                     modifier = Modifier.height(43.dp)
                 )

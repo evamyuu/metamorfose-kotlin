@@ -8,10 +8,14 @@
  *
  * Author: Gabriel Souza Teixeira
  * Created on: 08-05-2025
- * Last modified: 08-05-2025
- * Version: 1.0.0
+ * Last modified: 23-05-2025
+ * Version: 1.1.0
  * Squad: Metamorfose
  *
+ * Changelog:
+ *
+ * - [23-05-2025] Cores padrões alteradas de acordo com o Figma,
+ *                Modificado para aceitar diferentes tamanhos de textos (por Eve)
  */
 
 package br.com.metamorfose.ui.components.buttons
@@ -23,11 +27,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.metamorfose.ui.theme.GreyLightest
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import br.com.metamorfose.ui.theme.WhiteLight
 import br.com.metamorfose.ui.theme.DefaultButtonShadow
-import br.com.metamorfose.ui.theme.GreyMedium
 import br.com.metamorfose.ui.theme.MetamorfoseTheme
+import br.com.metamorfose.ui.theme.PurpleNormal
 
 /**
  * @param text Texto a ser exibido no botão.
@@ -46,7 +51,8 @@ import br.com.metamorfose.ui.theme.MetamorfoseTheme
 fun SecondButton(
     text: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fontSize: TextUnit = 16.sp
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -55,9 +61,10 @@ fun SecondButton(
         text,
         onClick,
         strokeColor = DefaultButtonShadow,
-        textColor = GreyMedium,
-        shadowColor = GreyLightest,
-        backgroundColor = WhiteLight
+        textColor = PurpleNormal,
+        shadowColor = DefaultButtonShadow,
+        backgroundColor = WhiteLight,
+        fontSize = fontSize
     )
 }
 

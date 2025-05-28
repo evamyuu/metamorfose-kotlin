@@ -67,7 +67,7 @@ fun BrandSplashScreen(
     ) {
         // Logo da marca
         Image(
-            painter = painterResource(id = R.drawable.ic_logo_butterfly),
+            painter = painterResource(id = R.drawable.logo_butterfly),
             contentDescription = "Metamorfose Logo",
             contentScale = ContentScale.FillWidth,
             modifier = Modifier

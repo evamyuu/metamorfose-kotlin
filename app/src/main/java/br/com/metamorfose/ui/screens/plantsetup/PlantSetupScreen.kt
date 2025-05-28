@@ -11,9 +11,14 @@
  *
  * Author: Gabriel Souza Teixeira
  * Created on: 05-05-2025
- * Last modified: 08-05-2025
- * Version: 1.1.0
+ * Last modified: 23-05-2025
+ * Version: 1.2.0
  * Squad: Metamorfose
+ *
+ *  Changelog:
+ *
+ *  - [23-05-2025] Ajustado fontSize de acordo com o Figma (por Eve)
+ *  - [27-05-2025] Ajustado espaçamento de acordo com o Figma (por Vinicyus)
  *
  */
 
@@ -35,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import br.com.metamorfose.ui.components.buttons.PrimaryButton
 import br.com.metamorfose.ui.theme.*
@@ -191,34 +197,37 @@ private fun PlantSetupContent(
                 )
             },
             isError = false,
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier.padding(
+                top = 16.dp,
+                bottom = 25.dp
+            )
         )
 
-        // Botão principal para tirar foto
+// Botão principal para tirar foto
         PrimaryButton(
             text = "TIRAR A PRIMEIRA FOTO DE SUA PLANTA",
             onClick = { /* REGISTRAR INFORMAÇÕES DA PLANTA E GERAR FOTO VIRTUAL */ },
-            modifier = Modifier.padding(vertical = 16.dp)
+            modifier = Modifier.padding(
+                top = 15.dp,
+                bottom = 25.dp
+            ),
+            fontSize = 14.sp
         )
 
-        // Divisor "OU"
-        Separator(
-            modifier = Modifier.padding(vertical = 16.dp),
-            text = "OU",
-            dividerColor = WhiteDark,
-            textColor = GreyLight
-        )
-
-        // Botão "Ignorar por enquanto"
+// Botão "Ignorar por enquanto"
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .padding(
+                    top = 25.dp,
+                    bottom = 8.dp
+                ),
         ) {
             SecondButton(
                 text = "IGNORAR ESSA ETAPA POR ENQUANTO",
                 onClick = onSkipSetup,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                fontSize = 14.sp
             )
         }
     }

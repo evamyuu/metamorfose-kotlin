@@ -102,7 +102,7 @@ fun OnboardingEggScreen(
 
         // Ilustração do Casulo
         Image(
-            painter = painterResource(id = R.drawable.ic_egg_transformation),
+            painter = painterResource(id = R.drawable.egg_transformation),
             contentDescription = "Casulo",
             modifier = Modifier.size(330.dp, 240.dp)
         )
@@ -134,7 +134,7 @@ fun OnboardingEggScreen(
                 contentAlignment = Alignment.CenterStart
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_onboarding_progress_temp),
+                    painter = painterResource(id = R.drawable.ui_component_onboarding_progress_temp),
                     contentDescription = "Progresso Intermediário",
                     modifier = Modifier.height(43.dp)
                 )

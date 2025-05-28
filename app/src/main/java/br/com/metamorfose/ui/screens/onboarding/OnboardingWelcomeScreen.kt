@@ -1,11 +1,16 @@
 /**
- * File: OnboardingWelcome.kt
+ * File: OnboardingWelcomeScreen.kt
  * Description: Tela de boas-vindas após o onboarding inicial, apresentando o mascote Ivy.
  * Author: Vinicyus Oliveira
  * Created on: 10-05-2025
- * Last modified: 11-05-2025
- * Version: 1.1.0
+ * Last modified: 23-05-2025
+ * Version: 1.2.0
  * Squad: Metamorfose
+ *
+ * Changelog:
+ *
+ * - [23-05-2025] Ajustado ContentScale para Crop (por Eve)
+ *
  */
 
 package br.com.metamorfose.ui.screens.onboarding
@@ -87,7 +92,7 @@ fun OnboardingWelcomeScreen(
             Image(
                 painter = painterResource(id = R.drawable.bg_wave_4),
                 contentDescription = null,
-                contentScale = ContentScale.FillWidth,
+                contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(max = 600.dp)

@@ -68,7 +68,7 @@ fun MascotSplashScreen(
     ) {
         // Logo da borboleta
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            painter = painterResource(id = R.drawable.launcher_foreground),
             contentDescription = "Metamorfose Butterfly Logo",
             contentScale = ContentScale.FillWidth,
             modifier = Modifier
